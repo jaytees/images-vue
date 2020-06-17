@@ -1,5 +1,6 @@
 import qs from 'qs';
 import api from '../../helpers/imgur';
+import { router } from '../../main';
 
 const state = {
   token: localStorage.getItem('imgur_token') || null,
@@ -23,9 +24,13 @@ const actions = {
     const { access_token } = qs.parse(hash.replace('#', ''));
     commit('setToken', access_token);
     localStorage.setItem('imgur_token', access_token);
+
+    // redirect
+    router.push('/');
   },
   logout: ({ commit }) => {
     commit('setToken', null);
+    localStorage.removeItem('imgur_token');
   },
 };
 
