@@ -12,6 +12,7 @@ export default {
   methods: mapActions(['finaliseLogin']),
   created() {
     // call the action in auth module
+    this.finaliseLogin(window.location.hash);
   },
 };
 </script>
