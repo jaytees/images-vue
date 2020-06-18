@@ -1,5 +1,5 @@
 <template lang="html">
-  <div>
+  <div class="image-container">
     <img
       v-for="images in allImages"
       :key="images.id"
@@ -22,4 +22,13 @@ export default {
 };
 </script>
 
-<style lang="css" scoped></style>
+<style lang="css" scoped>
+.image-container {
+  column-count: 3;
+  column-gap: 0;
+}
+img {
+  max-width: 100%;
+  padding: 5px;
+}
+</style>

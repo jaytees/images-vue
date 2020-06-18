@@ -15,13 +15,25 @@ export default {
     )}`;
   },
   fetchImagesApi(token) {
-    // if (!localStorage.getItem('access_token')) return 'Please Login';
-    // const token = localStorage.getItem('access_token');
-
     return axios.get(`${ROOT_URL}/3/account/me/images`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     });
+  },
+  uploadImagesApi(images, token) {
+    const promises = Array.from(images).map((image, i) => {
+      const formData = new FormData();
+      formData.append('image', image);
+      formData.append('title', `Title${i}`);
+
+      return axios.post(`${ROOT_URL}/3/image`, formData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+    }); //mapp
+
+    return Promise.all(promises);
   },
 };
