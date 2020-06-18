@@ -32,6 +32,7 @@ const actions = {
     commit('setToken', null);
     localStorage.removeItem('imgur_token');
     rootState.images = [];
+    router.push('/');
   },
 };
 
