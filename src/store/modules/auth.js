@@ -28,9 +28,10 @@ const actions = {
     // redirect
     router.push('/');
   },
-  logout: ({ commit }) => {
+  logout: ({ rootState, commit }) => {
     commit('setToken', null);
     localStorage.removeItem('imgur_token');
+    rootState.images = [];
   },
 };
 

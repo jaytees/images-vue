@@ -16,11 +16,12 @@ const mutations = {
 
 const actions = {
   // from api
-  async fetchImages({ rootState }) {
+  async fetchImages({ rootState, commit }) {
     const { token } = rootState.auth;
+    if (!token) return;
     const response = await api.fetchImagesApi(token);
 
-    console.log(response);
+    commit('setImages', response.data.data);
   },
   // to api
   uploadImages() {},
